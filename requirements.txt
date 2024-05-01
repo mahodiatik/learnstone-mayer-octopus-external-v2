@@ -1,0 +1,13 @@
+Scrapy==2.8.0
+beautifulsoup4==4.11.1
+pyfunctional==1.4.3
+thefuzz==0.19.0
+python-Levenshtein==0.20.8
+openpyxl==3.0.10
+selenium==4.8.2
+scrapy-playwright==0.0.34
+boto3==1.26.122
+Twisted==22.10.0
+pydantic==2.6.1
+numpy==1.26.4
+pandas==2.2.0
