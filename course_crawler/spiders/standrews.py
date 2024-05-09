@@ -31,7 +31,7 @@ class StAndrewsSpider(scrapy.Spider):
     lang_mappings = {}
 
     start_urls = [
-        'https://www.st-andrews.ac.uk/subjects/course-search/?collection=uosa-web-course--search&profile=_default&form=master&start_rank=1&num.ranks=10&sort=metatitle&mod=false&f.Year%7Cayrs=2023%2F4&query=%21null&f.tabs%7Ctype=Postgraduate&num_ranks=150'
+        'https://www.st-andrews.ac.uk/subjects/course-search/?collection=uosa-web-course--search&profile=_default&form=master&start_rank=1&num.ranks=10&sort=metatitle&mod=false&f.Year%7Cayrs=2023%2F4&query=%21null&f.tabs%7Ctype=Postgraduate&num_ranks=500'
     ]
 
     @classmethod
@@ -108,7 +108,13 @@ class StAndrewsSpider(scrapy.Spider):
         try:
             title = None
             h1_tag = soup.select_one('h1.page-intro__heading')
-            text = h1_tag.text.strip().split('(')
+            small = h1_tag.find('small')
+            if small:
+                small = small.text
+            else:
+                small = '\n'
+            h1_text = h1_tag.text.split(small)[0]
+            text = h1_text.strip().split('(')
             title = text[0].strip()
         except AttributeError:
             title = None
@@ -118,11 +124,17 @@ class StAndrewsSpider(scrapy.Spider):
         try:
             qualification = None
             h1_tag = soup.select_one('h1.page-intro__heading')
-            if '(' not in h1_tag.text:
-                if '-' in h1_tag.text:
+            small = h1_tag.find('small')
+            if small:
+                small = small.text
+            else:
+                small = '\n'
+            h1_text = h1_tag.text.split(small)[0]
+            if '(' not in h1_text:
+                if '-' in h1_text:
                     return 'PGCert/PGDip/MSc' # https://www.st-andrews.ac.uk/subjects/marine-biology/sustainable-aquaculture/ only for this one outlier
                 else:
-                    return h1_tag.text.split(' ')[-1] # 
+                    return h1_text.strip().split(' ')[-1]
             text = h1_tag.text.strip().split('(')
             qf = text[-1].split(')')[0]
             qualification = qf
@@ -167,28 +179,12 @@ class StAndrewsSpider(scrapy.Spider):
             about = None
         return about
 
-    #TODO: 'https://www.st-andrews.ac.uk/subjects/divinity/judaism-and-christianity-mlitt/' 'https://www.st-andrews.ac.uk/subjects/german/german-comparative-literature-mlitt/' 'https://www.st-andrews.ac.uk/subjects/tesol/tesol-dprof-august-and-january/'
+    #TODO: https://www.st-andrews.ac.uk/subjects/divinity/judaism-and-christianity-mlitt/ https://www.st-andrews.ac.uk/subjects/german/german-comparative-literature-mlitt/ https://www.st-andrews.ac.uk/subjects/tesol/tesol-dprof-august-and-january/
     def _get_tuitions(self, qualification, duration, study_mode, soup: BeautifulSoup) -> list:
         try:
             tuitions = []
-            # # study mode
-            # study_mode = 'Full-Time'
-            # h1_tag = soup.select_one('h1.page-intro__heading')
-            # text = h1_tag.text.strip().split('(')
-            # if 'online' in h1_tag.text.lower():
-            #     study_mode = 'Part-Time/Online'
-
-            # # duration
-            # dd_tag = soup.select('dd.paired-values-list__value')
-            # duration = ""
-            # i = 0
-            # while 'year' not in duration.lower():
-            #     duration = dd_tag[i].text.strip()
-            #     i+=1 
-
             if '(' in duration:
                 pos = re.search(qualification, duration)
-                # print(pos)
                 if pos:
                     l = duration[:pos.start()]
                     r = duration[pos.start():]
@@ -222,7 +218,6 @@ class StAndrewsSpider(scrapy.Spider):
                 if 'home' in text.lower():
                     try:
                         uk_fee = text.split('£')[1]
-                        # int_fee = uk_fee
                     except:
                         uk_fee = text
                 elif 'overseas' in text.lower():
@@ -247,6 +242,8 @@ class StAndrewsSpider(scrapy.Spider):
                             dur = uk_fee.split('(')[1]
                             dur = dur.rstrip(')')
                             duration = dur
+            if "overseas" in uk_fee.lower():
+                uk_fee = uk_fee.split('O')[0]
             tuitions = [
             {
                 "study_mode": study_mode,
@@ -281,19 +278,27 @@ class StAndrewsSpider(scrapy.Spider):
             application_dates = []
             headers = soup.find_all(re.compile('^h[1-6]$'), string=re.compile('application deadline', re.IGNORECASE))
             for header in headers:
-                date_paragraph = header.find_next_sibling('p', string=re.compile(r'\w?\s?\d{1,2}[srnt]?[tdh]?\s\w+\s\d{4}'))
-                # print(date_paragraph)
+                date_paragraph = header.find_next_sibling('p', string=re.compile(r'\w+?\s?\d{1,2}[srnt]?[tdh]?\s\w+\s\d{4}'))
                 if not date_paragraph:
                     dates = header.find_next_sibling('ul')
-                    dates = dates.find_all('li')
-                    for date in dates:
-                        application_dates.append(date.text)
+                    if not dates:
+                        found = False
+                        date_paragraph = header.findNextSibling()
+                        while not found:
+                            date_match = re.search(r'(\w+?\s?\d{1,2}[srnt]?[tdh]?\s\w+\s\d{4})', date_paragraph.text)
+                            found = date_match
+                            if date_match:
+                                application_dates.append(date_match.group(1))
+                            date_paragraph = date_paragraph.find_next_sibling('p')
+                    else:
+                        dates = dates.find_all('li')
+                        for date in dates:
+                            application_dates.append(date.text)
                 if date_paragraph:
-                    date_match = re.search(r'(\w?\s?\d{1,2}[srnt]?[tdh]?\s\w+\s\d{4})', date_paragraph.text)
+                    date_match = re.search(r'(\w+?\s?\d{1,2}[srnt]?[tdh]?\s\w+\s\d{4})', date_paragraph.text)
                     if date_match:
                         application_dates.append(date_match.group(1))
             if application_dates == []:
-                # print(soup.find_all('p'))
                 dates = [p.text for p in soup.find_all('p') if p.text.lower().startswith('application deadline')]
                 for date in dates:
                     date = date.split(':')[1]
@@ -389,6 +394,7 @@ class StAndrewsSpider(scrapy.Spider):
         return modules
 
     def parse_course(self, response: HtmlResponse):
+        # print(response.meta['title'])
         soup = BeautifulSoup(response.body, 'lxml', from_encoding='utf-8')
         link = response.url
         title = self._get_title(soup)

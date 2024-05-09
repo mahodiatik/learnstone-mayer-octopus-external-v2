@@ -268,16 +268,20 @@ class KCLSpider(scrapy.Spider):
                         fee = json_data['routing']['entry']["onlineCourseFeeInformation"]
                         duration = json_data['routing']['entry']['duration']
                         if not fee:
-                            continue
-
-                        fee = re.findall(r'&pound;(\d+,\d+)', fee).pop(0)
-
+                            fee= ""
+                        else:
+                            if("per module") in fee:
+                                fee = re.findall(r'&pound;(\d+,\d+)', fee).pop(0)
+                                fee = f'£{fee} per module'
+                            else:
+                                fee = re.findall(r'&pound;(\d+,\d+)', fee).pop(0)
+                                fee= f'£{fee}'
                         student_category, study_mode = mapper[k]
                         tuitions.append({
                             'study_mode': study_mode,
                             'duration': duration,
                             'student_category': student_category,
-                            'fee': f'£{fee}'
+                            'fee': fee
 
 
                         })
@@ -306,22 +310,51 @@ class KCLSpider(scrapy.Spider):
     '''
     Default dates are described in the following api:
     ---------------------------------------------------------------------------------------------------------------------------
-    curl 'https://www.kcl.ac.uk/api/delivery/projects/website/entries/72e8ecb1-123e-4621-bfef-0cbf249eb40e?linkDepth=1' \
-    -H 'accept: */*' \
-    -H 'accept-language: en-US,en;q=0.9,bn;q=0.8' \
-    -H 'accesstoken: JjV9NgvYm8BQgTNx2AtThsRBeK5qZxArDnRc2SKrzYWzvsS6' \
-    -H 'cookie: OptanonAlertBoxClosed=2024-03-28T08:51:00.450Z; _gid=GA1.3.509480863.1711833552; _fbp=fb.2.1711902939866.201974845; __hs_cookie_cat_pref=1:true_2:true_3:true; hubspotutk=338f7eef2923d6365b019b9516e5b2ec; __hssrc=1; _gcl_au=1.1.1626541155.1711902948; _hjSessionUser_3882840=eyJpZCI6IjNjZDAxM2Y3LWU1YjEtNTBlZC1hZjUzLWI4YTFmODJiMDk3NiIsImNyZWF0ZWQiOjE3MTE5MDI5NDExNzYsImV4aXN0aW5nIjp0cnVlfQ==; __hstc=102787167.338f7eef2923d6365b019b9516e5b2ec.1711902945790.1711914310426.1711924218847.3; _ga_2B2LNW4G7M=GS1.1.1711947718.6.0.1711947718.0.0.0; _ga_MB7LPD0MRQ=GS1.1.1711950710.7.1.1711952107.0.0.0; _ga=GA1.3.1650481729.1711615941; _gat_gtag_UA_228896_1=1; OptanonConsent=isGpcEnabled=0&datestamp=Mon+Apr+01+2024+13%3A51%3A53+GMT%2B0600+(Bangladesh+Standard+Time)&version=202402.1.0&browserGpcFlag=0&isIABGlobal=false&consentId=1aec5d0b-87c7-45e8-8e05-b61c16202a81&interactionCount=1&isAnonUser=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&hosts=H105%3A1%2CH148%3A1%2CH103%3A1%2CH130%3A1%2CH24%3A1%2CH104%3A1%2CH1%3A1%2CH201%3A1%2CH179%3A1%2CH19%3A1%2CH20%3A1%2CH144%3A1%2CH181%3A1%2CH117%3A1%2CH33%3A1%2CH48%3A1%2CH195%3A1%2CH9%3A1%2CH11%3A1%2CH106%3A1%2CH204%3A1%2CH57%3A1%2CH58%3A1%2CH59%3A1%2CH202%3A1%2CH21%3A1%2CH114%3A1%2CH115%3A1%2CH116%3A1%2CH23%3A1%2CH149%3A1%2CH173%3A1%2CH203%3A1%2CH150%3A1%2CH185%3A1%2CH126%3A1%2CH161%3A1%2CH127%3A1%2CH156%3A1%2CH128%3A1%2CH140%3A1%2CH198%3A1%2CH180%3A1%2CH62%3A1%2CH200%3A1%2CH187%3A1%2CH25%3A1%2CH26%3A1&genVendors=&geolocation=BD%3BC&AwaitingReconsent=false' \
-    -H 'dnt: 1' \
-    -H 'referer: https://www.kcl.ac.uk/study/postgraduate-taught/courses/applied-neuroscience-msc' \
-    -H 'sec-ch-ua: "Google Chrome";v="123", "Not:A-Brand";v="8", "Chromium";v="123"' \
-    -H 'sec-ch-ua-mobile: ?0' \
-    -H 'sec-ch-ua-platform: "Linux"' \
-    -H 'sec-fetch-dest: empty' \
-    -H 'sec-fetch-mode: cors' \
-    -H 'sec-fetch-site: same-origin' \
-    -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'
+    cookies = {
+        'OptanonAlertBoxClosed': '2024-03-28T08:51:00.450Z',
+        '_gid': 'GA1.3.509480863.1711833552',
+        '_fbp': 'fb.2.1711902939866.201974845',
+        '__hs_cookie_cat_pref': '1:true_2:true_3:true',
+        'hubspotutk': '338f7eef2923d6365b019b9516e5b2ec',
+        '__hssrc': '1',
+        '_gcl_au': '1.1.1626541155.1711902948',
+        '_hjSessionUser_3882840': 'eyJpZCI6IjNjZDAxM2Y3LWU1YjEtNTBlZC1hZjUzLWI4YTFmODJiMDk3NiIsImNyZWF0ZWQiOjE3MTE5MDI5NDExNzYsImV4aXN0aW5nIjp0cnVlfQ==',
+        '__hstc': '102787167.338f7eef2923d6365b019b9516e5b2ec.1711902945790.1711914310426.1711924218847.3',
+        '_ga_2B2LNW4G7M': 'GS1.1.1711947718.6.0.1711947718.0.0.0',
+        '_ga_MB7LPD0MRQ': 'GS1.1.1711950710.7.1.1711952107.0.0.0',
+        '_ga': 'GA1.3.1650481729.1711615941',
+        '_gat_gtag_UA_228896_1': '1',
+        'OptanonConsent': 'isGpcEnabled=0&datestamp=Mon+Apr+01+2024+13%3A51%3A53+GMT%2B0600+(Bangladesh+Standard+Time)&version=202402.1.0&browserGpcFlag=0&isIABGlobal=false&consentId=1aec5d0b-87c7-45e8-8e05-b61c16202a81&interactionCount=1&isAnonUser=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&hosts=H105%3A1%2CH148%3A1%2CH103%3A1%2CH130%3A1%2CH24%3A1%2CH104%3A1%2CH1%3A1%2CH201%3A1%2CH179%3A1%2CH19%3A1%2CH20%3A1%2CH144%3A1%2CH181%3A1%2CH117%3A1%2CH33%3A1%2CH48%3A1%2CH195%3A1%2CH9%3A1%2CH11%3A1%2CH106%3A1%2CH204%3A1%2CH57%3A1%2CH58%3A1%2CH59%3A1%2CH202%3A1%2CH21%3A1%2CH114%3A1%2CH115%3A1%2CH116%3A1%2CH23%3A1%2CH149%3A1%2CH173%3A1%2CH203%3A1%2CH150%3A1%2CH185%3A1%2CH126%3A1%2CH161%3A1%2CH127%3A1%2CH156%3A1%2CH128%3A1%2CH140%3A1%2CH198%3A1%2CH180%3A1%2CH62%3A1%2CH200%3A1%2CH187%3A1%2CH25%3A1%2CH26%3A1&genVendors=&geolocation=BD%3BC&AwaitingReconsent=false',
+    }
+
+    headers = {
+        'accept': '*/*',
+        'accept-language': 'en-US,en;q=0.9,bn;q=0.8',
+        'accesstoken': 'JjV9NgvYm8BQgTNx2AtThsRBeK5qZxArDnRc2SKrzYWzvsS6',
+        # 'cookie': 'OptanonAlertBoxClosed=2024-03-28T08:51:00.450Z; _gid=GA1.3.509480863.1711833552; _fbp=fb.2.1711902939866.201974845; __hs_cookie_cat_pref=1:true_2:true_3:true; hubspotutk=338f7eef2923d6365b019b9516e5b2ec; __hssrc=1; _gcl_au=1.1.1626541155.1711902948; _hjSessionUser_3882840=eyJpZCI6IjNjZDAxM2Y3LWU1YjEtNTBlZC1hZjUzLWI4YTFmODJiMDk3NiIsImNyZWF0ZWQiOjE3MTE5MDI5NDExNzYsImV4aXN0aW5nIjp0cnVlfQ==; __hstc=102787167.338f7eef2923d6365b019b9516e5b2ec.1711902945790.1711914310426.1711924218847.3; _ga_2B2LNW4G7M=GS1.1.1711947718.6.0.1711947718.0.0.0; _ga_MB7LPD0MRQ=GS1.1.1711950710.7.1.1711952107.0.0.0; _ga=GA1.3.1650481729.1711615941; _gat_gtag_UA_228896_1=1; OptanonConsent=isGpcEnabled=0&datestamp=Mon+Apr+01+2024+13%3A51%3A53+GMT%2B0600+(Bangladesh+Standard+Time)&version=202402.1.0&browserGpcFlag=0&isIABGlobal=false&consentId=1aec5d0b-87c7-45e8-8e05-b61c16202a81&interactionCount=1&isAnonUser=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1&hosts=H105%3A1%2CH148%3A1%2CH103%3A1%2CH130%3A1%2CH24%3A1%2CH104%3A1%2CH1%3A1%2CH201%3A1%2CH179%3A1%2CH19%3A1%2CH20%3A1%2CH144%3A1%2CH181%3A1%2CH117%3A1%2CH33%3A1%2CH48%3A1%2CH195%3A1%2CH9%3A1%2CH11%3A1%2CH106%3A1%2CH204%3A1%2CH57%3A1%2CH58%3A1%2CH59%3A1%2CH202%3A1%2CH21%3A1%2CH114%3A1%2CH115%3A1%2CH116%3A1%2CH23%3A1%2CH149%3A1%2CH173%3A1%2CH203%3A1%2CH150%3A1%2CH185%3A1%2CH126%3A1%2CH161%3A1%2CH127%3A1%2CH156%3A1%2CH128%3A1%2CH140%3A1%2CH198%3A1%2CH180%3A1%2CH62%3A1%2CH200%3A1%2CH187%3A1%2CH25%3A1%2CH26%3A1&genVendors=&geolocation=BD%3BC&AwaitingReconsent=false',
+        'dnt': '1',
+        'referer': 'https://www.kcl.ac.uk/study/postgraduate-taught/courses/applied-neuroscience-msc',
+        'sec-ch-ua': '"Google Chrome";v="123", "Not:A-Brand";v="8", "Chromium";v="123"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Linux"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+        'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
+    }
+
+    params = {
+        'linkDepth': '1',
+    }
+
+    response = requests.get(
+        'https://www.kcl.ac.uk/api/delivery/projects/website/entries/72e8ecb1-123e-4621-bfef-0cbf249eb40e',
+        params=params,
+        cookies=cookies,
+        headers=headers,
+    )
     ---------------------------------------------------------------------------------------------------------------------------
-    As there are only three values in all cases and parsing them from this api takes much time, I put them manually in the default_dates list
+    As there are only three values in all cases and parsing them from this api takes much time, I put them manually in the default_dates list from json["applicationClosingDateGuidanceDefault"]
     '''
 
     def _get_application_dates(self, json_data: dict,soup: BeautifulSoup) -> List[str]:
@@ -342,7 +375,11 @@ class KCLSpider(scrapy.Spider):
                             application_dates.append(match)
                     except:
                         application_dates = []
-            default_dates=['10 March 2024', '26 July 2024', '26 August 2024'] 
+            try:
+                application_dates= json_data["routing"]["entry"]["applicationDeadlineOnlineOverride"]
+            except:
+                pass
+            default_dates=['10 March 2024', '26 July 2024', '26 August 2024'] #default dates are described in the api described before the function
             if(len(application_dates) == 0):
                 application_dates=default_dates
         except (AttributeError, TypeError):
@@ -358,6 +395,12 @@ class KCLSpider(scrapy.Spider):
                 entry_requirements = "".join(seq([basic_requirements, other_requirements]).filter(lambda x: x).to_list())
             except:
                 entry_requirements = json_data['routing']['entry']['entryRequirement']
+            try:
+                if(entry_requirements == ""):
+                    entry_requirements= json_data['routing']['entry']['otherRequirements']
+            except:
+                pass
+        
         except (AttributeError, TypeError):
             entry_requirements = ""
         return entry_requirements

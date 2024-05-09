@@ -72,7 +72,7 @@ class ManchesterSpider(scrapy.Spider):
                 meta={
                     "title": title,
                     "link": self._CATALOG_URL + url,
-                    "qualifications": qualifications
+                    "qualifications": qualifications,
                 },
             )
 
@@ -92,7 +92,6 @@ class ManchesterSpider(scrapy.Spider):
             qualification = None
         return qualification
 
-    
     # no locations in the course pages
     def _get_locations(self, soup: BeautifulSoup) -> List[str]:
         try:
@@ -146,7 +145,7 @@ class ManchesterSpider(scrapy.Spider):
             study_modes = ["full-time", "part-time"]
             student_categories = ["uk", "international"]
             fees_section = soup.find(id="fees").findNextSibling("ul")
-            duration = "1 year" # as tuition fees are for 1 year (Fees are given as per annum) declared in the course pages
+            duration = "1 year"  # as tuition fees are for 1 year (Fees are given as per annum) declared in the course pages
             for fee_section in fees_section.select("li"):
                 try:
                     mode_section = fee_section.strong.text
@@ -211,11 +210,9 @@ class ManchesterSpider(scrapy.Spider):
             for fee_section in fees_section.select("p"):
                 try:
                     text = fee_section.text
-                    mode = seq(study_modes).find(
-                        lambda x: x in text.lower()
-                    )
-                    if(mode!=None):
-                        study_mode=mode
+                    mode = seq(study_modes).find(lambda x: x in text.lower())
+                    if mode != None:
+                        study_mode = mode
                     student_category = seq(student_categories).find(
                         lambda x: x in text.lower()
                     )
@@ -266,8 +263,6 @@ class ManchesterSpider(scrapy.Spider):
                 except:
                     tuitions = []
 
-
-            
         except AttributeError:
             try:
                 duration = ""
@@ -315,16 +310,18 @@ class ManchesterSpider(scrapy.Spider):
                                     "study_mode": mode,
                                 }
                             )
-                if(tuitions==[]):
-                    fee=soup.select_one("li.course-header-details_fees span").text
-                    duration_text=soup.select_one("li.course-header-details_duration span").text
+                if tuitions == []:
+                    fee = soup.select_one("li.course-header-details_fees span").text
+                    duration_text = soup.select_one(
+                        "li.course-header-details_duration span"
+                    ).text
                     duration_pattern = re.compile(r"\d+\s*(?:months?|weeks?|years?)")
                     if duration_pattern.search(duration_text):
                         duration = duration_pattern.search(duration_text).group(0)
-                    if (duration_text.lower().find('part-time') != -1):
-                        study_mode='part-time'
+                    if duration_text.lower().find("part-time") != -1:
+                        study_mode = "part-time"
                     else:
-                        study_mode='full-time'
+                        study_mode = "full-time"
                     tuitions.append(
                         {
                             "student_category": "All",
@@ -335,8 +332,58 @@ class ManchesterSpider(scrapy.Spider):
                     )
             except:
                 tuitions = []
-        return tuitions
+            try:
+                if tuitions == []:
+                    fee = soup.select_one("li.course-header-details_fees span").text
+                    duration_text = soup.select_one(
+                        "li.course-header-details_duration span"
+                    ).text
+                    duration_pattern = re.compile(r"\d+\s*(?:months?|weeks?|years?)")
+                    if duration_pattern.search(duration_text):
+                        duration = duration_pattern.search(duration_text).group(0)
+                    if duration_text.lower().find("part-time") != -1:
+                        study_mode = "part-time"
+                    else:
+                        study_mode = "full-time"
+                    tuitions.append(
+                        {
+                            "student_category": "All",
+                            "fee": fee,
+                            "duration": duration,
+                            "study_mode": study_mode,
+                        }
+                    )
+            except:
+                tuitions = []
+            try:
+                #fees ar described in the fees-and funding id as paragraph or list
+                try:
+                    fee_text = soup.select_one("div.course-profile-key-information.course-profile-key-information_fees-and-funding li").text.strip()
+                except:
+                    fee_text = soup.select_one("div.course-profile-key-information.course-profile-key-information_fees-and-funding").text.strip()
+                fee_pattern = re.compile(r"[$€£]\d+,\d+")
+                fee = fee_pattern.search(fee_text).group(0)
+                duration_text = soup.select_one(
+                        "li.course-header-details_duration span"
+                    ).text
+                if duration_pattern.search(duration_text):
+                    duration = duration_pattern.search(duration_text).group(0)
+                if duration_text.lower().find("part-time") != -1:
+                    study_mode = "part-time"
+                else:
+                    study_mode = "full-time"
+                tuitions.append(
+                    {
+                        "student_category": "All",
+                        "fee": fee,
+                        "duration": duration,
+                        "study_mode": study_mode,
+                    }
+                )
+            except:
+                tuitions = []
 
+        return tuitions
     #  No start dates in course pages
     def _get_start_dates(self, soup: BeautifulSoup) -> List[str]:
         try:
@@ -414,65 +461,72 @@ class ManchesterSpider(scrapy.Spider):
         except:
             return None
 
-
-    def _get_language_requirements_from_link(self,link):
+    def _get_language_requirements_from_link(self, link):
         soup = BeautifulSoup(requests.get(link).content, "html.parser")
         language_requirements = []
-        table= soup.select_one("#main__content table")
+        table = soup.select_one("#main__content table")
         if table is None:
-            table=soup.select_one("#content table") 
-        rows = table.find_all('tr')
+            table = soup.select_one("#content table")
+        rows = table.find_all("tr")
         for row in rows[1:]:
-            columns = row.find_all('td')
-            test = columns[0].text.strip().replace(" >>","")
+            columns = row.find_all("td")
+            test = columns[0].text.strip().replace(" >>", "")
             score = columns[1].text.strip()
-            language_requirements.append({'language': 'English', 'test': test, 'score': score})
+            language_requirements.append(
+                {"language": "English", "test": test, "score": score}
+            )
         return language_requirements
-        
+ 
 
-    # TODO handle language requirement pages
+    # TODO test this
     def _get_english_language_requirements(self, soup: BeautifulSoup) -> List[dict]:
         english_language_requirements = []
         try:
-            link=self._get_language_requirements_page_link(soup)
+            ### GO TO LANG REQ PAGE IF AVAILABLE *****************************************
+            link = self._get_language_requirements_page_link(soup)
             if link:
-                english_language_requirements=self._get_language_requirements_from_link(link)
-                if(len(english_language_requirements)>0):
-                    return english_language_requirements    
-            tests = ["IELTS", "TOEFL", "Pearson", "CAE", "CPE"]
-            english_requirement_section = soup.find(
-                id="english-language"
-            ).next_sibling.next_sibling
-            requirements = english_requirement_section.select("li")
-            for requirement in requirements:
-                _score = requirement.text.strip()
-                _test = seq(tests).find(lambda x: x.lower() in _score.lower())
-                if _test:
-                    english_language_requirements.append(
-                        {
-                            "language": "English",
-                            "test": _test,
-                            "score": _score,
-                        }
-                    )
-            if len(english_language_requirements) == 0:
-                english_requirement_section = soup.find(
-                    id="english-language"
-                ).next_sibling
-            requirements = english_requirement_section.select("li")
-            for requirement in requirements:
-                _score = requirement.text.strip()
-                _test = seq(tests).find(lambda x: x.lower() in _score.lower())
-                if _test:
-                    english_language_requirements.append(
-                        {
-                            "language": "English",
-                            "test": _test,
-                            "score": _score,
-                        }
-                    )
+                english_language_requirements = (
+                    self._get_language_requirements_from_link(link)
+                )
+                if len(english_language_requirements) > 0:
+                    return english_language_requirements
 
+            ### SCRAPE FROM COURSE PAGE **************************************************
+            tests = ["IELTS", "TOEFL", "Pearson", "CAE", "CPE"]
+            english_requirement_section = soup.find(id="english-language").findNext(
+                "ul"
+            )
+            ### case 1: in a list
+            if english_requirement_section:
+                requirements = english_requirement_section.select("li")
+                for requirement in requirements:
+                    _score = requirement.text.strip()
+                    _test = seq(tests).find(lambda x: x.lower() in _score.lower())
+                    if _test:
+                        english_language_requirements.append(
+                            {
+                                "language": "English",
+                                "test": _test,
+                                "score": _score,
+                            }
+                        )
+            ### case 2: in a paragraph
+            if len(english_language_requirements) == 0:
+                english_requirement_section = soup.find(id="english-language").findNext(
+                    "div"
+                )
+                _score = english_requirement_section.text.strip()
+                _test = seq(tests).find(lambda x: x.lower() in _score.lower())
+                if _test:
+                    english_language_requirements.append(
+                        {
+                            "language": "English",
+                            "test": _test,
+                            "score": _score,
+                        }
+                    )
         except (AttributeError, KeyError):
+            print("error lang req")
             try:
                 english_language_requirements = []
                 tests = ["IELTS", "TOEFL", "Pearson", "CAE", "CPE"]
@@ -480,6 +534,7 @@ class ManchesterSpider(scrapy.Spider):
                 for selector in selectors:
                     if selector.text.lower().strip() == "english language":
                         requirement_list = selector.next_sibling.next_sibling
+                        print(requirement_list)
                         requirements = requirement_list.select("li")
                         for requirement in requirements:
                             _score = requirement.text.strip()
@@ -514,13 +569,65 @@ class ManchesterSpider(scrapy.Spider):
                                         }
                                     )
             except:
+                pass
+            #language requirements are given in course content container as list or paragraph
+            try:
+                selector=soup.select('#course-content-container h4')
+                for i in selector:
+                    if i.text=='English language':
+                        selector=i.find_next('div')
+                texts=selector.select('li')
+                if(texts==[]):
+                    texts=selector.select('p')
+                for i in texts:
+                    if i.text.find('IELTS')!=-1:
+                        language="English"
+                        test="IELTS"
+                        score=i.text.replace("\xa0","").strip()
+                        english_language_requirements.append({'language':language, 'test':test, 'score':score})
+                    if i.text.find('TOEFL')!=-1:
+                        language="English"
+                        test="TOEFL"
+                        score=i.text.replace("\xa0","").strip()
+                        english_language_requirements.append({'language':language, 'test':test, 'score':score})
+                    if i.text.find('Pearson')!=-1:
+                        language="English"
+                        test="Pearson"
+                        score=i.text.replace("\xa0","").strip()
+                        english_language_requirements.append({'language':language, 'test':test, 'score':score})
+                    if i.text.find('Cambridge')!=-1:
+                        language="English"
+                        test="Cambridge"
+                        score=i.text.replace("\xa0","").strip()
+                        english_language_requirements.append({'language':language, 'test':test, 'score':score})
+            except:
                 english_language_requirements = []
         return english_language_requirements
 
     # done
     def _get_modules(self, soup: BeautifulSoup, link, qualification: str) -> List[dict]:
+        modules=[]
+        #Case 1: Modules are listed in a course-profile section
         try:
-            modules = []
+            response= requests.get(link+'course-details/')
+            soup= BeautifulSoup(response.content, 'html.parser')
+            selector=soup.select("#course-profile div.course-profile-content li")
+            for i in selector:
+                try:
+                    type_text=i.find_previous('strong').get_text()
+                except:
+                    type_text=""
+                if type_text.lower().find("optional")!=-1:
+                    type="Optional"
+                else:
+                    type="Core"
+                checker=i.find_previous('h2').get_text()
+                if checker=="Course unit details":
+                    modules.append({"title":i.text.strip(), "type":type, "link":""})
+        except:
+            modules=[]
+        #Case 2: Modules are given in course-units table
+        try:
             modules_table = soup.find("table", class_="course-units").tbody
             modules_data = modules_table.select("tr")
             for d in modules_data:
@@ -541,7 +648,9 @@ class ManchesterSpider(scrapy.Spider):
                         "link": _link,
                     }
                 )
+            
         except AttributeError:
+            #Case 3: Modules are given in h3 tag in course-units section
             try:
                 modulesselector = soup.select(".CourseUnits h3")
                 for module in modulesselector:
@@ -563,7 +672,7 @@ class ManchesterSpider(scrapy.Spider):
                         type = "Mandatory"
                     modules.append({"title": title, "type": type, "link": ""})
             except:
-                modules = []
+                modules=[]
         return modules
 
     def parse_course(self, response: HtmlResponse):

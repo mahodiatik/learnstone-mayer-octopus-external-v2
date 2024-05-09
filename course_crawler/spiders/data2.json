@@ -1,0 +1,442 @@
+{
+    "optionalInternshipsDefault": "<p>Students will be supported through innovative digital education tools to discover meaningful work experience for themselves, including internships, insight programmes, which you can undertake alongside your studies.</p>\n<p><a title=\"Find out more about Internships\" href=\"https://www.kcl.ac.uk/careers/get-experience/internships\">Find out more about Internships</a></p>",
+    "entryThumbnail": null,
+    "detailsDisclaimer": "<p>Please note the course details apply to 2024 entry. Details for 2025 entry for our postgraduate courses will be published from October 2024.</p>",
+    "englishLanguageRequirements": "<p>To study at King's, it is essential that you can communicate in English effectively in an academic environment. You are usually required to provide certification of your competence in English before starting your studies.</p>\n<p>Nationals of majority English speaking countries (<a href=\"https://eur03.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.gov.uk%2Fstudent-visa%2Fknowledge-of-english&amp;data=04%7C01%7Ccecily.peach%40kcl.ac.uk%7Cb4259f20b3944ff5d16d08d98e4ff7f6%7C8370cf1416f34c16b83c724071654356%7C0%7C0%7C637697296372923385%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=x12eNJmvgvrwW0WAWaGUYHH6T8ApelIW8aVXXI4froY%3D&amp;reserved=0\">as defined by the UKVI</a>) who have permanently resided in this country are not usually required to complete an additional English language test. This is also the case for applicants who have successfully completed an undergraduate degree (of at least three years duration), a postgraduate taught degree (of at least one year), or a PhD in a majority English speaking country (<a href=\"https://eur03.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.gov.uk%2Fstudent-visa%2Fknowledge-of-english&amp;data=04%7C01%7Ccecily.peach%40kcl.ac.uk%7Cb4259f20b3944ff5d16d08d98e4ff7f6%7C8370cf1416f34c16b83c724071654356%7C0%7C0%7C637697296372933336%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=ah%2F%2FNnl5VP3nelM68z6oOMxxVD7vND1hwQ7cFYQetXg%3D&amp;reserved=0\">as defined by the UKVI</a>) within five years of the course start date.</p>\n<p>For information on our English language requirements and whether you need to complete an English language test, please see our <a href=\"https://www.kcl.ac.uk/study/postgraduate-taught/how-to-apply/entry-requirements/english-language-requirements\">English Language requirements page</a>.</p>",
+    "compulsoryStudyAbroadDefault": "<p>On this programme, you will have the opportunity to apply to study abroad, supported by the Study Abroad Tutor in your department and King&rsquo;s Global Mobility Office. Together with partner organisations around the world, you will be supported in navigating your international, educational journey, developing new skills and competences and learning to apply different perspectives to your chosen discipline.</p>\n<p><a title=\"Find out more about Study Abroad\" href=\"https://www.kcl.ac.uk/study/abroad/discover\">Find out more about Study Abroad</a></p>",
+    "optionalYearInIndustryDefault": "<p>On this programme, you&rsquo;ll spend your third year in a full-time year in industry or year in professional practice placement. Our Global Placements team will support you throughout your programme with advice and activities to help you discover your options, focus your placement search and take action to achieve the right placement for you.</p>\n<p><a title=\"Find out more about placements\" href=\"https://www.kcl.ac.uk/careers/get-experience/placements\">Find out more about placements</a></p>",
+    "optionalStudyAbroadDefault": "<p>On this programme, you will have the opportunity to apply to study abroad, supported by the Study Abroad Tutor in your department and King&rsquo;s Global Mobility Office. Together with partner organisations around the world, you will be supported in navigating your international, educational journey, developing new skills and competences and learning to apply different perspectives to your chosen discipline.</p>\n<p><a title=\"Find out more about Study Abroad\" href=\"https://www.kcl.ac.uk/study/abroad/discover\">Find out more about Study Abroad</a></p>",
+    "applicationDeadlineOnline": [
+        "2021-08-17T00:00:00",
+        "2021-10-12T00:00:00",
+        "2021-12-12T00:00:00",
+        "2022-02-15T00:00:00",
+        "2022-04-19T00:00:00",
+        "2022-06-14T00:00:00"
+    ],
+    "entryDescription": null,
+    "assessmentMethodsDefault": "<p>The study time and assessment methods detailed above are typical and&nbsp;give you a good indication of what to expect. However, they are subject to change.</p>",
+    "testField": null,
+    "sys": {
+        "owner": "k0960388",
+        "metadata": {},
+        "workflow": {
+            "id": "contensisEntryBasic",
+            "state": "versionComplete"
+        },
+        "dataFormat": "entry",
+        "isPublished": true,
+        "availableLanguages": [
+            "en-GB"
+        ],
+        "contentTypeId": "postgraduateCourseDefaultControl",
+        "language": "en-GB",
+        "allUris": [],
+        "uri": null,
+        "version": {
+            "publishedBy": "k1506898",
+            "archived": null,
+            "deleted": null,
+            "createdBy": "k0960388",
+            "created": "2021-07-05T11:48:36.6385572Z",
+            "versionNo": "28.0",
+            "modified": "2023-11-01T09:06:27.6891602Z",
+            "modifiedBy": "k1506898",
+            "published": "2023-11-01T09:06:35.8716207Z",
+            "archivedBy": null,
+            "deletedBy": null
+        },
+        "versionStatus": "published",
+        "id": "72e8ecb1-123e-4621-bfef-0cbf249eb40e",
+        "projectId": "website",
+        "slug": "postgraduate-course-defaults",
+        "properties": {}
+    },
+    "title": "Postgraduate course defaults",
+    "applicationStatus": true,
+    "personalStatementDefault": "<p>You will be asked to submit the following documents in order for your application to be considered:</p>\n<p><strong>A personal statement</strong> of up to 4,000 characters (maximum 2 pages) is required. The personal statement should describe your teaching experience so far and discuss how you feel this MA will build on your experience, as well as how it might contribute to your future career plans.</p>\n<p><strong>Previous academic study:</strong> A copy (or copies) of your official academic transcript(s), showing the subjects studied and marks obtained. If you have already completed your degree, copies of your official degree certificate will also be required. Applicants with academic documents issued in a language other than English, will need to submit both the original and official translation of their documents.</p>\n<p><strong>References:</strong> Two references are required with at least one academic. Professional references will be accepted if you have completed your qualifications over five years ago.</p>",
+    "fundingDefault": "<p>To find out more about bursaries, scholarships, grants, tuition fees,&nbsp;living expenses, student loans, and other financial help available at King's please visit the&nbsp;<a title=\"fees-and-funding\" href=\"https://www.kcl.ac.uk/study/postgraduate-taught/fees-and-funding\">Fees and Funding section</a>.</p>",
+    "optionalAccreditedInternshipsDefault": "<p>On this programme, you&rsquo;ll have the opportunity to undertake an accredited internship module (subject to availability), supported by Internship Convenors in your department and King&rsquo;s Careers &amp;amp; Employability who will support you in navigating your career journey and through online learning and content designed to aide you in sourcing your own internship.</p>\n<p><a title=\"Find out more about Internships\" href=\"https://www.kcl.ac.uk/careers/get-experience/internships\">Find out more about Internships</a></p>",
+    "applicationDeadlineClassroom": "2021-01-29T00:00:00",
+    "locationDisclaimerDefault": "<p>Please note that locations are determined by where each module is taught and may vary depending on the modules you study.</p>",
+    "applicationClosingDateGuidanceDefault": "<p>We encourage you to apply as early as possible so that there is sufficient time for your application to be assessed. We may need to request further information from you during the application process.</p>\n<p>Our first application deadline is on 10 March 2024 (23:59 UK time).</p>\n<p>The final application deadlines for this programme are:</p>\n<p>&middot; Overseas (international) fee status: 26 July 2024 (23:59 UK time)</p>\n<p>&middot; Home fee status: 26 August 2024 (23:59 UK time)</p>\n<p>After the first application deadline, if the programme becomes full before the final deadlines stated above, we will close the programme to further applications.</p>",
+    "entryTitle": "Postgraduate course defaults",
+    "englishLanguageQualifications": [
+        {
+            "bandBRequirement": "185 overall with a minimum of 176 in each skill",
+            "bandDRequirement": "176 overall with a minimum of 169 in each skill",
+            "bandCRequirement": "185 overall with a minimum 176 in reading & writing and 169 in listening & speaking",
+            "bandARequirement": "191 overall with a minimum 185 in each skill",
+            "entryDescription": null,
+            "description": null,
+            "bandERequirement": "169 overall with a minimum of 160 in each skill",
+            "sys": {
+                "owner": "k1466286",
+                "metadata": {},
+                "workflow": {
+                    "id": "contensisEntryBasic",
+                    "state": "versionComplete"
+                },
+                "dataFormat": "entry",
+                "isPublished": true,
+                "availableLanguages": [
+                    "en-GB"
+                ],
+                "contentTypeId": "englishLanguageQualification",
+                "language": "en-GB",
+                "allUris": [],
+                "uri": null,
+                "version": {
+                    "publishedBy": "k1516184",
+                    "archived": null,
+                    "deleted": null,
+                    "createdBy": "k1466286",
+                    "created": "2020-06-04T14:34:42.3617417Z",
+                    "versionNo": "2.0",
+                    "modified": "2021-05-27T14:29:13.0909943Z",
+                    "modifiedBy": "k1516184",
+                    "published": "2021-05-27T14:29:15.9636829Z",
+                    "archivedBy": null,
+                    "deletedBy": null
+                },
+                "versionStatus": "published",
+                "id": "724df2d8-bafd-44f1-bd62-f82583d75fc5",
+                "projectId": "website",
+                "slug": "cambridge-advanced-certificate-cae-cambridge-c1-advanced",
+                "properties": {}
+            },
+            "title": "Cambridge Advanced Certificate (CAE) / Cambridge C1 Advanced",
+            "highSchoolQualification": false,
+            "entryTitle": "Cambridge Advanced Certificate (CAE) / Cambridge C1 Advanced"
+        },
+        {
+            "bandBRequirement": "185 overall with a minimum of 176 in each skill",
+            "bandDRequirement": "176 overall with a minimum of 169 in each skill",
+            "bandCRequirement": "185 overall with a minimum 176 in reading & writing and 169 in listening & speaking",
+            "bandARequirement": "191 overall with a minimum 185 in each skill",
+            "entryDescription": null,
+            "description": null,
+            "bandERequirement": "169 overall with a minimum of 160 in each skill",
+            "sys": {
+                "owner": "k1818415",
+                "metadata": {},
+                "workflow": {
+                    "id": "contensisEntryBasic",
+                    "state": "versionComplete"
+                },
+                "dataFormat": "entry",
+                "isPublished": true,
+                "availableLanguages": [
+                    "en-GB"
+                ],
+                "contentTypeId": "englishLanguageQualification",
+                "language": "en-GB",
+                "allUris": [],
+                "uri": null,
+                "version": {
+                    "publishedBy": "k1516184",
+                    "archived": null,
+                    "deleted": null,
+                    "createdBy": "k1818415",
+                    "created": "2020-06-09T03:04:35.0066459Z",
+                    "versionNo": "3.0",
+                    "modified": "2021-05-27T14:32:40.4639329Z",
+                    "modifiedBy": "k1516184",
+                    "published": "2021-05-27T14:32:42.527637Z",
+                    "archivedBy": null,
+                    "deletedBy": null
+                },
+                "versionStatus": "published",
+                "id": "dcaf644b-d077-4253-8d87-6717c597ab08",
+                "projectId": "website",
+                "slug": "cambridge-certificate-of-proficiency-in-english-cpe-cambridge-c2-proficiency",
+                "properties": {}
+            },
+            "title": "Cambridge Certificate of Proficiency in English (CPE) / Cambridge C2 Proficiency",
+            "highSchoolQualification": false,
+            "entryTitle": "Cambridge Certificate of Proficiency in English (CPE) / Cambridge C2 Proficiency"
+        },
+        {
+            "bandBRequirement": "7.0 overall with a minimum of 6.5 in each skill",
+            "bandDRequirement": "6.5 overall with a minimum of 6.0 in each skill",
+            "bandCRequirement": "7.0 overall with a minimum of 6.5 in reading & writing and 6.0 in listening & speaking",
+            "bandARequirement": "7.5 overall with a minimum of 7.0 in each skill",
+            "entryDescription": null,
+            "description": null,
+            "bandERequirement": "6.0 overall with a minimum of 5.5 in each skill",
+            "sys": {
+                "owner": "k1818415",
+                "metadata": {},
+                "workflow": {
+                    "id": "contensisEntryBasic",
+                    "state": "versionComplete"
+                },
+                "dataFormat": "entry",
+                "isPublished": true,
+                "availableLanguages": [
+                    "en-GB"
+                ],
+                "contentTypeId": "englishLanguageQualification",
+                "language": "en-GB",
+                "allUris": [],
+                "uri": null,
+                "version": {
+                    "publishedBy": "k1516184",
+                    "archived": null,
+                    "deleted": null,
+                    "createdBy": "k1818415",
+                    "created": "2020-06-09T03:20:44.9655676Z",
+                    "versionNo": "2.0",
+                    "modified": "2021-05-27T14:35:57.9404285Z",
+                    "modifiedBy": "k1516184",
+                    "published": "2021-05-27T14:36:00.9670142Z",
+                    "archivedBy": null,
+                    "deletedBy": null
+                },
+                "versionStatus": "published",
+                "id": "51802375-b7f0-4078-80fa-4c5ac91402a0",
+                "projectId": "website",
+                "slug": "ielts-academic",
+                "properties": {}
+            },
+            "title": "IELTS (Academic)",
+            "highSchoolQualification": false,
+            "entryTitle": "IELTS (Academic)"
+        },
+        {
+            "bandBRequirement": "7.0 overall with a minimum of 6.5 in each skill",
+            "bandDRequirement": "6.5 overall with a minimum of 6.0 in each skill",
+            "bandCRequirement": "7.0 overall with a minimum of 6.5 in reading & writing and 6.0 in listening & speaking",
+            "bandARequirement": "7.5 overall with a minimum of 7.0 in each skill",
+            "entryDescription": null,
+            "description": null,
+            "bandERequirement": "6.0 overall with a minimum of 5.5 in each skill",
+            "sys": {
+                "owner": "k1516184",
+                "metadata": {},
+                "workflow": {
+                    "id": "contensisEntryBasic",
+                    "state": "versionComplete"
+                },
+                "dataFormat": "entry",
+                "isPublished": true,
+                "availableLanguages": [
+                    "en-GB"
+                ],
+                "contentTypeId": "englishLanguageQualification",
+                "language": "en-GB",
+                "allUris": [],
+                "uri": null,
+                "version": {
+                    "publishedBy": "k1516184",
+                    "archived": null,
+                    "deleted": null,
+                    "createdBy": "k1516184",
+                    "created": "2021-05-27T15:53:48.8224366Z",
+                    "versionNo": "1.0",
+                    "modified": "2021-05-27T15:53:48.8224366Z",
+                    "modifiedBy": "k1516184",
+                    "published": "2021-05-27T15:53:50.5665424Z",
+                    "archivedBy": null,
+                    "deletedBy": null
+                },
+                "versionStatus": "published",
+                "id": "b3bc0a4c-d637-48e1-94f1-dd6e108960c7",
+                "projectId": "website",
+                "slug": "ielts-indicator-taken-from-1-july-2020-onwards",
+                "properties": {}
+            },
+            "title": "IELTS Indicator (taken from 1 July 2020 onwards)",
+            "highSchoolQualification": false,
+            "entryTitle": "IELTS Indicator (taken from 1 July 2020 onwards)"
+        },
+        {
+            "bandBRequirement": null,
+            "bandDRequirement": null,
+            "bandCRequirement": null,
+            "bandARequirement": "B grade in Listening, Reading, Writing and Speaking",
+            "entryDescription": null,
+            "description": null,
+            "bandERequirement": null,
+            "sys": {
+                "owner": "k1818415",
+                "metadata": {},
+                "workflow": {
+                    "id": "contensisEntryBasic",
+                    "state": "versionComplete"
+                },
+                "dataFormat": "entry",
+                "isPublished": true,
+                "availableLanguages": [
+                    "en-GB"
+                ],
+                "contentTypeId": "englishLanguageQualification",
+                "language": "en-GB",
+                "allUris": [],
+                "uri": null,
+                "version": {
+                    "publishedBy": "k1818415",
+                    "archived": null,
+                    "deleted": null,
+                    "createdBy": "k1818415",
+                    "created": "2020-06-09T03:23:27.1016349Z",
+                    "versionNo": "1.0",
+                    "modified": "2020-06-09T03:23:29.3985535Z",
+                    "modifiedBy": "k1818415",
+                    "published": "2020-06-09T03:23:30.9923111Z",
+                    "archivedBy": null,
+                    "deletedBy": null
+                },
+                "versionStatus": "published",
+                "id": "e7c0f8a6-1cc8-43c2-8b4a-0bb88d91e993",
+                "projectId": "website",
+                "slug": "occupational-english-test-oet",
+                "properties": {}
+            },
+            "title": "Occupational English Test (OET)",
+            "highSchoolQualification": false,
+            "entryTitle": "Occupational English Test (OET)"
+        },
+        {
+            "bandBRequirement": "69 overall with a minimum of 62 in each communicative skill",
+            "bandDRequirement": "62 overall with a minimum of 59 in each communicative skill",
+            "bandCRequirement": "69 overall, with a minimum of 62 in reading & writing and 59 in listening & speaking",
+            "bandARequirement": "75 overall with a minimum of 69 in each communicative skill",
+            "entryDescription": null,
+            "description": null,
+            "bandERequirement": "59 overall, with a minimum of 54 in each communicative skill",
+            "sys": {
+                "owner": "k1818415",
+                "metadata": {},
+                "workflow": {
+                    "id": "contensisEntryBasic",
+                    "state": "versionComplete"
+                },
+                "dataFormat": "entry",
+                "isPublished": true,
+                "availableLanguages": [
+                    "en-GB"
+                ],
+                "contentTypeId": "englishLanguageQualification",
+                "language": "en-GB",
+                "allUris": [],
+                "uri": null,
+                "version": {
+                    "publishedBy": "k1516184",
+                    "archived": null,
+                    "deleted": null,
+                    "createdBy": "k1818415",
+                    "created": "2020-06-09T03:22:21.0734582Z",
+                    "versionNo": "2.0",
+                    "modified": "2021-05-27T15:55:22.0578557Z",
+                    "modifiedBy": "k1516184",
+                    "published": "2021-05-27T15:55:24.5265807Z",
+                    "archivedBy": null,
+                    "deletedBy": null
+                },
+                "versionStatus": "published",
+                "id": "ff325cd4-ef73-4bbe-9ac5-399a4085a3c7",
+                "projectId": "website",
+                "slug": "pearson-test-of-english-academic",
+                "properties": {}
+            },
+            "title": "Pearson Test of English (Academic)",
+            "highSchoolQualification": false,
+            "entryTitle": "Pearson Test of English (Academic)"
+        },
+        {
+            "bandBRequirement": "100 overall with a minimum of 25 in writing and 23  in each of the other skills",
+            "bandDRequirement": "92 overall with 23 in writing and 20 in the other skills",
+            "bandCRequirement": "100 overall with a minimum of 25 in writing, 23 in reading and 20 in each of the other skills",
+            "bandARequirement": "109 overall with 27 in writing and a minimum of 25 in each of the other skills",
+            "entryDescription": null,
+            "description": null,
+            "bandERequirement": "80 overall, with a minimum 20 in each skill",
+            "sys": {
+                "owner": "k1818415",
+                "metadata": {},
+                "workflow": {
+                    "id": "contensisEntryBasic",
+                    "state": "versionComplete"
+                },
+                "dataFormat": "entry",
+                "isPublished": true,
+                "availableLanguages": [
+                    "en-GB"
+                ],
+                "contentTypeId": "englishLanguageQualification",
+                "language": "en-GB",
+                "allUris": [],
+                "uri": null,
+                "version": {
+                    "publishedBy": "k1516184",
+                    "archived": null,
+                    "deleted": null,
+                    "createdBy": "k1818415",
+                    "created": "2020-06-09T03:24:57.8043151Z",
+                    "versionNo": "2.0",
+                    "modified": "2021-05-27T14:38:15.7858942Z",
+                    "modifiedBy": "k1516184",
+                    "published": "2021-05-27T14:38:17.9577296Z",
+                    "archivedBy": null,
+                    "deletedBy": null
+                },
+                "versionStatus": "published",
+                "id": "b6ab2500-4e33-46ab-ae7f-53bca7d53e26",
+                "projectId": "website",
+                "slug": "toefl-ibt-institution-code-0394-or-toefl-ibt-special-home-edition",
+                "properties": {}
+            },
+            "title": "TOEFL iBT  Institution code: 0394 OR TOEFL iBT Special Home Edition",
+            "highSchoolQualification": false,
+            "entryTitle": "TOEFL iBT  Institution code: 0394 OR TOEFL iBT Special Home Edition"
+        },
+        {
+            "bandBRequirement": "Level III (ISEIII) with merit in each skill",
+            "bandDRequirement": "Level III (ISEIII) with pass in each skill",
+            "bandCRequirement": "Level III (ISEIII) with merit in reading & writing and pass in listening & speaking",
+            "bandARequirement": "Level III (ISEIII) with distinction in each skill",
+            "entryDescription": null,
+            "description": null,
+            "bandERequirement": "Level III (ISEIII) with pass in each skill",
+            "sys": {
+                "owner": "k1818415",
+                "metadata": {},
+                "workflow": {
+                    "id": "contensisEntryBasic",
+                    "state": "versionComplete"
+                },
+                "dataFormat": "entry",
+                "isPublished": true,
+                "availableLanguages": [
+                    "en-GB"
+                ],
+                "contentTypeId": "englishLanguageQualification",
+                "language": "en-GB",
+                "allUris": [],
+                "uri": null,
+                "version": {
+                    "publishedBy": "k1516184",
+                    "archived": null,
+                    "deleted": null,
+                    "createdBy": "k1818415",
+                    "created": "2020-06-09T03:26:38.2193212Z",
+                    "versionNo": "2.0",
+                    "modified": "2021-05-27T14:39:36.0208055Z",
+                    "modifiedBy": "k1516184",
+                    "published": "2021-05-27T14:39:38.8408786Z",
+                    "archivedBy": null,
+                    "deletedBy": null
+                },
+                "versionStatus": "published",
+                "id": "ea38600d-d430-452f-9f17-dc929b06f298",
+                "projectId": "website",
+                "slug": "trinity-college-london-integrated-skills-in-english-ise",
+                "properties": {}
+            },
+            "title": "Trinity College London Integrated Skills in English (ISE)",
+            "highSchoolQualification": false,
+            "entryTitle": "Trinity College London Integrated Skills in English (ISE)"
+        }
+    ]
+}
