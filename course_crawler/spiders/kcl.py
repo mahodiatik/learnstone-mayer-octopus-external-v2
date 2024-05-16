@@ -194,7 +194,7 @@ class KCLSpider(scrapy.Spider):
             about = None
         return about
 
-    def _get_tuitions(self, json_data: dict) -> list:                         
+    def _get_tuitions(self, json_data: dict, qualification) -> list:                         
         try:
             mapper = {
                 'ukFee': ('uk', 'Full-time'),
@@ -208,11 +208,37 @@ class KCLSpider(scrapy.Spider):
             try:
                 for k in seq(mapper.keys()).filter(lambda x: x in json_data['routing']['entry']):
                     fee = json_data['routing']['entry'][k]
-                    duration = json_data['routing']['entry']['duration']
-                    if not fee:
-                        continue
+                    text = json_data['routing']['entry']['duration']
+                    if "." in text:
+                        values= text.split('.')
+                        for value in values:
+                            if qualification in value:
+                                duration= value
+                    elif 'or' in text:
+                        values= text.split('or')
+                        for value in values:
+                            if 'part-time' in value:
+                                duration= value
+                                study_mode= 'part-time'
+                            elif 'full-time' in value:
+                                duration= value
+                                study_mode= 'full-time'
+                    elif '/' in text:
+                        values= text.split('/')
+                        for value in values:
+                            if 'PT' in value:
+                                duration= value
+                                study_mode= 'part-time'
+                            elif 'FT' in value:
+                                duration= value
+                                study_mode= 'full-time'
+                    else:
+                        duration= text
 
-                    fee = re.findall(r'£\d+,\d+', fee).pop(0)
+                    if not fee:
+                        fee=""
+                    else:
+                        fee = re.findall(r'£\d+,\d+', fee).pop(0)
 
                     student_category, study_mode = mapper[k]
                     tuitions.append({
@@ -228,11 +254,36 @@ class KCLSpider(scrapy.Spider):
                     for k in seq(mapper.keys()).filter(lambda x: x in json_data['routing']['entry']['relatedCourses'][0]['relatedCourses'][0]):
                         fee=json_data['routing'] ['entry'] ['relatedCourses'][0]['relatedCourses'][0][k]
                         duration= json_data['routing']['entry']['relatedCourses'][0]['relatedCourses'][0]['duration']
+                        if "." in text:
+                            values= text.split('.')
+                            for value in values:
+                                if qualification in value:
+                                    duration= value
+                        elif 'or' in text:
+                            values= text.split('or')
+                            for value in values:
+                                if 'part-time' in value:
+                                    duration= value
+                                    study_mode= 'part-time'
+                                elif 'full-time' in value:
+                                    duration= value
+                                    study_mode= 'full-time'
+                        elif '/' in text:
+                            values= text.split('/')
+                            for value in values:
+                                if 'PT' in value:
+                                    duration= value
+                                    study_mode= 'part-time'
+                                elif 'FT' in value:
+                                    duration= value
+                                    study_mode= 'full-time'
+                        else:
+                            duration= text
 
                         if not fee:
-                            continue
-
-                        fee = re.findall(r'£\d+,\d+', fee).pop(0)
+                            fee=""
+                        else:
+                            fee = re.findall(r'£\d+,\d+', fee).pop(0)
                 
                         student_category, study_mode = mapper[k]
                         tuitions.append({
@@ -248,10 +299,35 @@ class KCLSpider(scrapy.Spider):
                     for k in seq(mapper.keys()).filter(lambda x: x in json_data['routing']['entry']):
                         fee = json_data['routing']['entry']["furtherFeeInformation"]
                         duration = json_data['routing']['entry']['duration']
+                        if "." in text:
+                            values= text.split('.')
+                            for value in values:
+                                if qualification in value:
+                                    duration= value
+                        elif 'or' in text:
+                            values= text.split('or')
+                            for value in values:
+                                if 'part-time' in value:
+                                    duration= value
+                                    study_mode= 'part-time'
+                                elif 'full-time' in value:
+                                    duration= value
+                                    study_mode= 'full-time'
+                        elif '/' in text:
+                            values= text.split('/')
+                            for value in values:
+                                if 'PT' in value:
+                                    duration= value
+                                    study_mode= 'part-time'
+                                elif 'FT' in value:
+                                    duration= value
+                                    study_mode= 'full-time'
+                        else:
+                            duration= text
                         if not fee:
-                            continue
-
-                        fee = re.findall(r'£\d+,\d+', fee).pop(0)
+                            fee=""
+                        else:
+                            fee = re.findall(r'£\d+,\d+', fee).pop(0)
 
                         student_category, study_mode = mapper[k]
                         tuitions.append({
@@ -267,6 +343,31 @@ class KCLSpider(scrapy.Spider):
                     for k in seq(mapper.keys()).filter(lambda x: x in json_data['routing']['entry']):
                         fee = json_data['routing']['entry']["onlineCourseFeeInformation"]
                         duration = json_data['routing']['entry']['duration']
+                        if "." in text:
+                            values= text.split('.')
+                            for value in values:
+                                if qualification in value:
+                                    duration= value
+                        elif 'or' in text:
+                            values= text.split('or')
+                            for value in values:
+                                if 'part-time' in value:
+                                    duration= value
+                                    study_mode= 'part-time'
+                                elif 'full-time' in value:
+                                    duration= value
+                                    study_mode= 'full-time'
+                        elif '/' in text:
+                            values= text.split('/')
+                            for value in values:
+                                if 'PT' in value:
+                                    duration= value
+                                    study_mode= 'part-time'
+                                elif 'FT' in value:
+                                    duration= value
+                                    study_mode= 'full-time'
+                        else:
+                            duration= text
                         if not fee:
                             fee= ""
                         else:
@@ -459,7 +560,6 @@ class KCLSpider(scrapy.Spider):
             locations = self._get_locations(json_data)
             description = self._get_description(json_data)
             about = self._get_about(json_data)
-            tuitions = self._get_tuitions(json_data)
             start_dates = self._get_start_dates(json_data)
             application_dates = self._get_application_dates(json_data,soup)
             entry_requirements = self._get_entry_requirements(json_data)
@@ -467,6 +567,7 @@ class KCLSpider(scrapy.Spider):
             modules = self._get_modules(json_data)
 
             for qualification in qualifications:
+                tuitions = self._get_tuitions(json_data,qualification)
                 yield {
                     'link': link,
                     'title': title,
